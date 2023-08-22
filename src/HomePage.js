@@ -36,7 +36,7 @@ function App({ socket, startJoinProcess }){
             socket.current.emit("createroom", "{}");
         }else{
             setAlertSeverity('error');
-            setAlertMessage("Error: Socket not connected");
+            setAlertMessage("Error: Socket not connected (Server may take 2-3 minutes to start, please be patient)");
             openAlert();
             setFormDisabled(false);
         }
@@ -68,7 +68,7 @@ function App({ socket, startJoinProcess }){
             }
         }else{
             setAlertSeverity('error');
-            setAlertMessage("Error: Socket not connected");
+            setAlertMessage("Error: Socket not connected (Server may take 2-3 minutes to start, please be patient)");
             openAlert();
             setFormDisabled(false);
         }
