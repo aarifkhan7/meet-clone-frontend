@@ -1,4 +1,4 @@
-import { BottomNavigation, BottomNavigationAction, Box, CssBaseline, Grid, Icon, Paper } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box, Container, CssBaseline, Grid, Icon, Paper } from "@mui/material";
 import StreamArray from "./StreamArray";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -7,7 +7,7 @@ import Peer from "peerjs";
 const peerConnOptions = {
 }
 
-function RoomPage({socket, roomDetails, localStream}){
+function RoomPage({socket, roomDetails, localStream, exitRoom}){
     let [streamArr, setStreamArr] = useState([localStream.current]);
 
     function handleNavClick(){
@@ -122,6 +122,9 @@ function RoomPage({socket, roomDetails, localStream}){
         <>
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             {/* <CssBaseline/> */}
+            <Box textAlign="center">
+                    Room ID: {roomDetails.current.roomId}
+            </Box>
             <Box>
                 <StreamArray streamsArr={streamArr}></StreamArray>
             </Box>
@@ -130,7 +133,7 @@ function RoomPage({socket, roomDetails, localStream}){
                     <BottomNavigationAction onClick={handleNavClick} label="Mic" icon={<Icon>mic_off</Icon>}></BottomNavigationAction>
                     <BottomNavigationAction onClick={handleNavClick} label="Camera" icon={<Icon>videocam</Icon>}></BottomNavigationAction>
                     <BottomNavigationAction onClick={handleNavClick} label="Chat" icon={<Icon>chat</Icon>}></BottomNavigationAction>
-                    <BottomNavigationAction onClick={handleNavClick} label="Exit Room" icon={<Icon>logout</Icon>}></BottomNavigationAction>
+                    <BottomNavigationAction onClick={exitRoom} label="Exit Room" icon={<Icon>logout</Icon>}></BottomNavigationAction>
                 </BottomNavigation>
             </Paper>
         </>

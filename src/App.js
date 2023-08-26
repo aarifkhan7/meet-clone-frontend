@@ -36,6 +36,15 @@ function App(){
         // socket.emit("metadata");
     }
 
+    function exitRoom(){
+        socket.current.emit("exit-room");
+        // indicates the server, participant has left room
+
+        setScreen('home');
+        roomDetails.current = {};
+        localStream = null;
+    }
+
     useEffect(() => {
         socket.current = io(process.env.REACT_APP_socketURL);
 
@@ -74,7 +83,7 @@ function App(){
                 <JoiningPage></JoiningPage>
             ) : null}
             {screen == 'room' ? (
-                <RoomPage socket={socket} roomDetails={roomDetails} localStream={localStream}></RoomPage>
+                <RoomPage socket={socket} roomDetails={roomDetails} localStream={localStream} exitRoom={exitRoom}></RoomPage>
             ) : null}
         </>
     );

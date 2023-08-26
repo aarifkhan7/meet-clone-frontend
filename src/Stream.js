@@ -3,7 +3,7 @@ import VideoJS from './VideoJS'
 import { Container, Icon, IconButton, Stack } from "@mui/material";
 import { Mic, MicOff } from "@mui/icons-material";
 
-export default function Stream({ streamObject, height, width, topOverlay, bottomOverlay }){
+export default function Stream({ streamObject, height, width, topOverlay, bottomOverlay, muted }){
     const videoRef = useRef(null);
 
     useEffect(()=>{
@@ -56,7 +56,7 @@ export default function Stream({ streamObject, height, width, topOverlay, bottom
                     style={{
                         display: "block"
                     }}
-                    autoPlay={true} />
+                    autoPlay={true} muted={muted}/>
                 </div>
             ) : "Access Not Granted"}
         </>
